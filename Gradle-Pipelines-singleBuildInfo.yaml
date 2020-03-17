@@ -119,7 +119,7 @@ pipelines:
             - name:    docker_gradleBuild_Info    # optional
               trigger: true
           outputResources:
-            - name: docker_gradleBuild_Info
+            - name: final_docker_gradleBuild_Info
 
        
 
