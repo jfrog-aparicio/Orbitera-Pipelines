@@ -101,7 +101,7 @@ pipelines:
           waitUntilFinish: true
           inputResources:
             - name: docker_gradleBuild_Info
-              trigger: true
+              trigger: false
 #          outputResources:
 #            - name: scanned_gradle_dockerBuild_Info
 
