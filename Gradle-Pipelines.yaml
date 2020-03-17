@@ -39,7 +39,7 @@ pipelines:
           waitUntilFinish: true
           inputResources:
             - name: gradleBuildInfo
-              trigger: true
+              trigger: false
           outputResources: 
             - name: scanned_gradleBuild_Info
 
@@ -72,7 +72,7 @@ pipelines:
             - name: gitRepo_code
             - name: gradle_fileSpec
             - name: promoted_gradleBuild_Info
-              trigger: true
+              trigger: false
           integrations:
             - name: artifactory
         execution:
