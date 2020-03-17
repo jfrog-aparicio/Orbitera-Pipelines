@@ -115,11 +115,11 @@ pipelines:
           copy:                  false
           inputSteps:
             - name: Gradle_docker_scan
-#          inputResources:
-#            - name:    scanned_gradle_dockerBuild_Info    # optional
-#              trigger: true
-#          outputResources:
-#            - name: final_docker_gradleBuild_Info
+          inputResources:
+            - name:    docker_gradleBuild_Info    # optional
+              trigger: true
+          outputResources:
+            - name: docker_gradleBuild_Info
 
        
 
