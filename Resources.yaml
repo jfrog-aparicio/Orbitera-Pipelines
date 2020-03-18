@@ -127,7 +127,7 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
-      buildName: docker_gradle_build
+      buildName: docker_npm_build
       buildNumber: ${run_number}  
       
   - name: final_docker_npmBuild_Info 
