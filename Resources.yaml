@@ -137,7 +137,7 @@ resources:
       buildName: docker_npm_build
       buildNumber: ${run_number}    
       
-      
+# -------------- Distribution Resources -------------------
 
   - name:       New_ReleaseBundle
     type:       ReleaseBundle
