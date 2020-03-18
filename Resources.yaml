@@ -47,7 +47,7 @@ resources:
       sourceArtifactory: artifactory
       buildName: gradle_build
       buildNumber: ${run_number}
-
+# ---------------- Docker Phase Gradle Build Info ------------------
   - name: docker_gradleBuild_Info
     type: BuildInfo
     configuration:
@@ -104,7 +104,8 @@ resources:
       sourceArtifactory: artifactory
       buildName: npm_build
       buildNumber: ${run_number}
-      
+
+ # ---------------- Docker Phase NPM Build Info ------------------
       
   - name: docker_npmBuild_Info
     type: BuildInfo
@@ -118,7 +119,7 @@ resources:
     type: BuildInfo
     configuration:
       sourceArtifactory: artifactory
-      buildName: docker_gradle_build
+      buildName: docker_npm_build
       buildNumber: ${run_number}
 
 
