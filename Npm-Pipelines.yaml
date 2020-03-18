@@ -88,6 +88,8 @@ pipelines:
           outputResources:
             - name: promoted_npmBuild_Info
             
+
+
       - name: npm_docker_build
         type: DockerBuild
         configuration:
@@ -110,6 +112,9 @@ pipelines:
             - popd
           onSuccess:
             - echo "Congrats The Docker image was build"
+
+
+
       - name: Npm_docker_push
         type: DockerPush
         configuration:
@@ -121,6 +126,9 @@ pipelines:
             - name: npm_docker_build
           outputResources:
             - name: docker_npmBuild_Info
+
+
+
       - name: npm_docker_scan
         type: XrayScan
         configuration:
@@ -130,6 +138,10 @@ pipelines:
               trigger: true
           outputResources: 
             - name: scanned_npm_dockerBuild_Info
+
+
+
+
       - name: npm_docker_promote
         type: PromoteBuild
         configuration:
