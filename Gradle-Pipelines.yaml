@@ -88,6 +88,7 @@ pipelines:
         configuration:
           targetRepository:     team1-docker-dev-us
           autoPublishBuildInfo: true
+          includeDependencies:  true
           integrations:
             - name:  artifactory
           inputSteps:
