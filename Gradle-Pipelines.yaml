@@ -109,7 +109,7 @@ pipelines:
         type: PromoteBuild
         configuration:
           targetRepository:      team1-docker-staging-us
-          includeDependencies:   false
+          includeDependencies:   true
           status:                Passed
           comment:               Artifact passed Xray Scan
           copy:                  false
