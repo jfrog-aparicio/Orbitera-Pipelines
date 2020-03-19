@@ -98,7 +98,7 @@ pipelines:
           dockerImageName: ${ArtIP}/team1-docker-dev-us/npm-app
           dockerImageTag: ${Version}
           inputSteps:
-            - name: npm_compile
+            - name: npm_publish
           inputResources: 
             - name: gitRepo_code
             - name: npm_fileSpec
