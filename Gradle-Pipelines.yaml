@@ -113,8 +113,8 @@ pipelines:
           status:                Passed
           comment:               Artifact passed Xray Scan
           copy:                  false
-          inputSteps:
-            - name: Gradle_docker_scan
+#           inputSteps:
+#             - name: Gradle_docker_scan
           inputResources:
             - name:    scanned_gradle_dockerBuild_Info
               trigger: false
