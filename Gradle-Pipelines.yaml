@@ -72,7 +72,9 @@ pipelines:
             - name: gradle_bld_app
           inputResources:
             - name: gitRepo_code
+              trigger: false
             - name: gradle_fileSpec
+              trigger: false
             - name: gradleBuildInfo     
               trigger: false
           integrations:
