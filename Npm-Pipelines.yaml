@@ -64,30 +64,30 @@ pipelines:
           onStart:
             - export inputNpmBuildStepName="npm_prep"
             
-      - name: npm_scan_publish
-        type: PublishBuildInfo
-        configuration:
-          forceXrayScan:    True
-          inputSteps:
-            - name:    npm_publish
-          outputResources:
-            - name:     npmBuildInfo
-     
-     
-      - name: npm_promote
-        type: PromoteBuild
-        configuration:
-          targetRepository:      team1-npm-staging-us 
-          includeDependencies:   false   
-          status:                Passed
-          comment:               Artifact passed Xray Scan
-          copy:                  true
-          inputResources:
-            - name:    npmBuildInfo    # optional
-              trigger: true       
-          outputResources:
-            - name: promoted_npmBuild_Info
-            
+#      - name: npm_scan_publish
+#        type: PublishBuildInfo
+#        configuration:
+#          forceXrayScan:    True
+#          inputSteps:
+#            - name:    npm_publish
+#          outputResources:
+#            - name:     npmBuildInfo
+#
+#
+#      - name: npm_promote
+#        type: PromoteBuild
+#        configuration:
+#          targetRepository:      team1-npm-staging-us
+#          includeDependencies:   false
+#          status:                Passed
+#          comment:               Artifact passed Xray Scan
+#          copy:                  true
+#          inputResources:
+#            - name:    npmBuildInfo    # optional
+#              trigger: true
+#          outputResources:
+#            - name: promoted_npmBuild_Info
+#
 
 
       - name: npm_docker_build
@@ -97,11 +97,13 @@ pipelines:
           dockerFileName: Dockerfile
           dockerImageName: ${ArtIP}/team1-docker-dev-us/npm-app
           dockerImageTag: ${Version}
+          inputSteps:
+            - name: npm_compile
           inputResources: 
             - name: gitRepo_code
             - name: npm_fileSpec
-            - name: promoted_npmBuild_Info
-              trigger: true
+#            - name: promoted_npmBuild_Info
+#              trigger: true
           integrations:
             - name: artifactory
         execution:
