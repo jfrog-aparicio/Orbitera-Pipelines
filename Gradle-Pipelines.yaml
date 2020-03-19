@@ -102,7 +102,7 @@ pipelines:
           inputResources:
             - name: docker_gradleBuild_Info
               trigger: false
-         outputResources:
+          outputResources:
             - name: scanned_gradle_dockerBuild_Info       #     Currently not in use
 
       - name: gradle_docker_promote
