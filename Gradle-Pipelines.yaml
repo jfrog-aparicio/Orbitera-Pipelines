@@ -26,8 +26,8 @@ pipelines:
             - name:  gitRepo_code
           integrations:
             - name: artifactory
-#          outputResources:
-#            - name: gradleBuildInfo     #     Currently not in use
+          outputResources:
+            - name: gradleBuildInfo     #     Currently not in use
 
 
 
@@ -73,8 +73,8 @@ pipelines:
           inputResources:
             - name: gitRepo_code
             - name: gradle_fileSpec
-#            - name: promoted_gradleBuild_Info      #Currently  not in use
-              trigger: true
+            - name: gradleBuildInfo     
+              trigger: false
           integrations:
             - name: artifactory
         execution:
