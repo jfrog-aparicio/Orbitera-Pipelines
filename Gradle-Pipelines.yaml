@@ -4,10 +4,10 @@ pipelines:
       environmentVariables:
         readOnly:
           Version: 1.1.$run_number
-          
+
 
     steps:
-      - name: gradle_bld_svc_demo
+      - name: gradle_bld_app
         type: GradleBuild
         configuration:
           runtime:
@@ -21,43 +21,43 @@ pipelines:
           sourceLocation:       tutorial/step1-create-gradle-app
           configFileLocation:   .
           configFileName:       jfrog-gradle.yml
-          autoPublishBuildInfo: true
+          autoPublishBuildInfo: false
           inputResources:
             - name:  gitRepo_code
           integrations:
             - name: artifactory
-          outputResources:
-            - name: gradleBuildInfo
-     
+#          outputResources:
+#            - name: gradleBuildInfo     #     Currently not in use
 
 
-      
-            
-      - name: gradle_scan
-        type: XrayScan
-        configuration:
-          waitUntilFinish: true
-          inputResources:
-            - name: gradleBuildInfo
-              trigger: true
-          outputResources: 
-            - name: scanned_gradleBuild_Info
 
-            
-                     
-      - name: gradle_promote
-        type: PromoteBuild
-        configuration:
-          targetRepository:      team1-gradle-staging-us 
-          includeDependencies:   false   
-          status:                Passed
-          comment:               Artifact passed Xray Scan
-          copy:                  true
-          inputResources:
-            - name:    scanned_gradleBuild_Info    # optional
-              trigger: true       
-          outputResources:
-            - name: promoted_gradleBuild_Info
+
+
+#      - name: gradle_scan
+#        type: XrayScan
+#        configuration:
+#          waitUntilFinish: true
+#          inputResources:
+#            - name: gradleBuildInfo
+#              trigger: true
+#          outputResources:
+#            - name: scanned_gradleBuild_Info
+
+                                                      #     Currently not in use
+
+#      - name: gradle_promote
+#        type: PromoteBuild
+#        configuration:
+#          targetRepository:      team1-gradle-staging-us
+#          includeDependencies:   false
+#          status:                Passed
+#          comment:               Artifact passed Xray Scan
+#          copy:                  true
+#          inputResources:
+#            - name:    scanned_gradleBuild_Info    # optional
+#              trigger: true
+#          outputResources:
+#            - name: promoted_gradleBuild_Info
 
 #------------------------------------Docker Section ------------------------------------------------
 
@@ -66,17 +66,19 @@ pipelines:
         configuration:
           dockerFileLocation: tutorial/step1-create-gradle-app
           dockerFileName: Dockerfile
-          dockerImageName: ${ArtIP}/team1-docker-dev-us/gradle-app       
+          dockerImageName: ${ArtIP}/team1-docker-dev-us/gradle-app
           dockerImageTag: ${Version}
+          inputSteps:
+            - name: gradle_bld_app
           inputResources:
             - name: gitRepo_code
             - name: gradle_fileSpec
-            - name: promoted_gradleBuild_Info
+#            - name: promoted_gradleBuild_Info      #Currently  not in use
               trigger: true
           integrations:
             - name: artifactory
         execution:
-          onStart: 
+          onStart:
           # export artifactory ip from internal build env var to tag the docker image
             - export ArtIP=$(echo ${int_artifactory_url}|awk -F '/' '{print $3}')
 
@@ -92,31 +94,33 @@ pipelines:
             - name: Gradle_docker_build
           outputResources:
             - name: docker_gradleBuild_Info
- 
+
       - name: Gradle_docker_scan
         type: XrayScan
         configuration:
           waitUntilFinish: true
           inputResources:
             - name: docker_gradleBuild_Info
-              trigger: true
-          outputResources: 
-            - name: scanned_gradle_dockerBuild_Info
+              trigger: false
+#          outputResources:
+#            - name: scanned_gradle_dockerBuild_Info       #     Currently not in use
 
       - name: gradle_docker_promote
         type: PromoteBuild
         configuration:
-          targetRepository:      team1-docker-staging-us 
-          includeDependencies:   false   
+          targetRepository:      team1-docker-staging-us
+          includeDependencies:   false
           status:                Passed
           comment:               Artifact passed Xray Scan
           copy:                  false
+          inputSteps:
+            - name: Gradle_docker_scan
           inputResources:
-            - name:    scanned_gradle_dockerBuild_Info    # optional
-              trigger: true       
+            - name:    docker_gradleBuild_Info
+              trigger: false
           outputResources:
-            - name: final_docker_gradleBuild_Info         
+            - name: final_docker_gradleBuild_Info
 
-       
 
- 
+
+
