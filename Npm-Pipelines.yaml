@@ -32,7 +32,9 @@ pipelines:
             - pushd ${res_gitRepo_code_resourcePath}/tutorial/step2-create-ui-pkg
             - npm version ${Version} --no-git-tag-version
             - popd
-   
+
+
+
       - name: npm_compile
         type: Bash
         configuration:
@@ -73,7 +75,7 @@ pipelines:
 #          outputResources:
 #            - name:     npmBuildInfo
 #
-#
+#                                              #     Currently not in use
 #      - name: npm_promote
 #        type: PromoteBuild
 #        configuration:
@@ -103,7 +105,7 @@ pipelines:
             - name: gitRepo_code
             - name: npm_fileSpec
 #            - name: promoted_npmBuild_Info
-#              trigger: true
+#              trigger: true         #     Currently not in use
           integrations:
             - name: artifactory
         execution:
@@ -153,7 +155,7 @@ pipelines:
           comment:               Artifact passed Xray Scan
           copy:                  false
           inputResources:
-            - name:    scanned_npm_dockerBuild_Info    # optional
+            - name:    scanned_npm_dockerBuild_Info
               trigger: true       
           outputResources:
             - name: final_docker_npmBuild_Info 
