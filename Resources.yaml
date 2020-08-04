@@ -3,7 +3,7 @@ resources:
   - name: gitRepo_code
     type: GitRepo
     configuration:
-      path: jfrogtraining/Orbitera-Pipelines
+      path: jfrogtraining/project-examples
       gitProvider: GitRepo
       branches:
         include: eplus-v2-orbitera
