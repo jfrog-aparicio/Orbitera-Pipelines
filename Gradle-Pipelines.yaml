@@ -25,7 +25,7 @@ pipelines:
           inputResources:
             - name:  gitRepo_code
           integrations:
-            - name: artifactory
+            - name: ofir_artifactory
           outputResources:
             - name: gradleBuildInfo     #     Currently not in use
 
@@ -78,7 +78,7 @@ pipelines:
             - name: gradleBuildInfo     
               trigger: false
           integrations:
-            - name: artifactory
+            - name: ofir_artifactory
         execution:
           onStart:
           # export artifactory ip from internal build env var to tag the docker image
@@ -91,7 +91,7 @@ pipelines:
           targetRepository:     team1-docker-dev-us
           autoPublishBuildInfo: true
           integrations:
-            - name:  artifactory
+            - name:  ofir_artifactory
           inputSteps:
             - name: Gradle_docker_build
           outputResources:
