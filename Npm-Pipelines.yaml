@@ -19,7 +19,7 @@ pipelines:
             image:
               custom:
                 name: docker.bintray.io/jfrog/pipelines-u18node
-                tag: "10.16.3"
+                tag: "10.21.0"
           npmArgs:   --no-progress --no-audit
           repositoryName:   ofir-npm-build
           sourceLocation:   tutorial/step2-create-ui-pkg
