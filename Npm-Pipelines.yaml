@@ -21,7 +21,7 @@ pipelines:
                 name: docker.bintray.io/jfrog/pipelines-u18node
                 tag: "10.16.3"
           npmArgs:   --no-progress --no-audit
-          repositoryName:   team1-npm
+          repositoryName:   ofir-npm-build
           sourceLocation:   tutorial/step2-create-ui-pkg
           integrations:
             - name: ofir_artifactory
@@ -57,7 +57,7 @@ pipelines:
       - name: npm_publish
         type: NpmPublish
         configuration:
-          repositoryName:       team1-npm
+          repositoryName:       ofir-npm-build
           integrations:
             - name: ofir_artifactory
           inputSteps:
@@ -97,7 +97,7 @@ pipelines:
         configuration:
           dockerFileLocation: tutorial/step2-create-ui-pkg
           dockerFileName: Dockerfile
-          dockerImageName: ${ArtIP}/team1-docker-dev-us/npm-app
+          dockerImageName: ${ArtIP}/ofir-docker-dev/npm-app
           dockerImageTag: ${Version}
           inputSteps:
             - name: npm_publish
@@ -122,7 +122,7 @@ pipelines:
       - name: Npm_docker_push
         type: DockerPush
         configuration:
-          targetRepository:     team1-docker-dev-us
+          targetRepository:     ofir-docker-dev
           autoPublishBuildInfo: true
           integrations:
             - name:  ofir_artifactory
@@ -149,7 +149,7 @@ pipelines:
       - name: npm_docker_promote
         type: PromoteBuild
         configuration:
-          targetRepository:      team1-docker-staging-us 
+          targetRepository:      ofir-docker-staging
           includeDependencies:   true   
           status:                Passed
           comment:               Artifact passed Xray Scan
