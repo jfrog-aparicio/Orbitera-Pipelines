@@ -3,8 +3,8 @@ resources:
   - name: gitRepo_code
     type: GitRepo
     configuration:
-      path: jfrogtraining/project-examples
-      gitProvider: GitRepo
+      path: jfrog-aparicio/project-examples
+      gitProvider: ofir_arturo_github
       branches:
         include: eplus-v2-orbitera
 
