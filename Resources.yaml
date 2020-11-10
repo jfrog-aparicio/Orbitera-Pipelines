@@ -4,7 +4,7 @@ resources:
     type: GitRepo
     configuration:
       path: jfrogtraining/project-examples
-      gitProvider: ofir_arturo_github
+      gitProvider: GitRepo
       branches:
         include: eplus-v2-orbitera
 
