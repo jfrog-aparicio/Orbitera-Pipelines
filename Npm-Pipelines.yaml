@@ -21,7 +21,7 @@ pipelines:
                 name: docker.bintray.io/jfrog/pipelines-u18node
                 tag: "10.21.0"
           npmArgs:   --no-progress --no-audit
-          repositoryName:   ofir-npm-build
+          repositoryName:   ofir-npm
           sourceLocation:   tutorial/step2-create-ui-pkg
           integrations:
             - name: ofir_artifactory
