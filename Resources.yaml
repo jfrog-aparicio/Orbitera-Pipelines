@@ -12,7 +12,7 @@ resources:
     type:       FileSpec
     configuration:     
       sourceArtifactory:    ofir_artifactory
-      pattern:              team1-npm-dev-us/angular-animate/-/angular-animate-1.4.14.tgz
+      pattern:              ofir-npm-build/angular-animate/-/angular-animate-1.4.14.tgz
       target:               npm_results/
       buildName:            npm_build   # optional
       buildNumber:          ${run_number}
