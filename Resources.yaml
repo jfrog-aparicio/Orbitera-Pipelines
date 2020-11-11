@@ -8,15 +8,6 @@ resources:
       branches:
         include: eplus-v2-orbitera
 
-  - name:       gradle_fileSpec
-    type:       FileSpec
-    configuration:     
-      sourceArtifactory:    ofir_artifactory
-      pattern:              team1-gradle-dev-us/com/jfrog/frogsws/0.1.0-*/frogsws-0.1.0-*.jar
-      target:               gradle_results/*.jar
-      buildName:            gradle_build   # optional
-      buildNumber:          ${run_number}
-
   - name:       npm_fileSpec
     type:       FileSpec
     configuration:     
@@ -26,58 +17,6 @@ resources:
       buildName:            npm_build   # optional
       buildNumber:          ${run_number}
 
-#-------------------- Gradle BuildInfo -----------------------------
-  - name: gradleBuildInfo
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
-      
-  - name: scanned_gradleBuild_Info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
-      
-  - name: promoted_gradleBuild_Info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
-
-  - name: docker_gradleBuild_Info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
-
-
-  - name: scanned_gradle_dockerBuild_Info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
-
-
-  - name: promoted_docker_gradleBuild_Info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
-
-
-  - name: final_docker_gradleBuild_Info
-    type: BuildInfo
-    configuration:
-      sourceArtifactory: ofir_artifactory
-      buildName: gradle_build
-      buildNumber: ${run_number}
 
 
 #------------------ NPM Build INFO -------------------------
@@ -135,34 +74,6 @@ resources:
       sourceArtifactory: ofir_artifactory
       buildName: npm_build
       buildNumber: ${run_number}    
-      
-      
-
-  - name:       New_ReleaseBundle
-    type:       ReleaseBundle
-    configuration:
-      sourceDistribution:   ofir_distribution
-      name:                 New_ReleaseBundle
-      version:              v1.0.0
-      isSigned:             false
-
-  - name:       Signed_ReleaseBundle
-    type:       ReleaseBundle
-    configuration:
-      sourceDistribution:   ofir_distribution
-      name:                 Signed_ReleaseBundle
-      version:              v1.0.0
-
-
-  - name:           Distribution_Rule
-    type:           DistributionRule
-    configuration:
-      sourceDistribution:   ofir_distribution
-      serviceName:          edge-jpd
-      siteName:             "edge-jpd"
-      cityName:             "*"
-      countryCodes:
-        - "*"
 
 
 
